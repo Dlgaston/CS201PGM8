@@ -19,7 +19,6 @@ class LinkedList {
     int size=0;
 
     public:
-
     LinkedList();
     ~LinkedList();
     void addToBack(const Person &data);

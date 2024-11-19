@@ -8,14 +8,14 @@
 
 Person::Person() = default;
 
-Person::Person(const string& code, const string& lastName, const string& firstName, const string& socialNumber) {
+Person::Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber) {
     this->code = code;
     this->lastName = lastName;
     this->firstName = firstName;
     this->socialNumber = socialNumber;
 }
 
-string Person::getCode() {
+char Person::getCode() {
     return this->code;
 }
 string Person::getLastName() {
@@ -32,7 +32,7 @@ string Person::getFullName() {
     return this->getLastName()+", "+this->getFirstName();
 }
 
-void Person::setCode(const string& code) {
+void Person::setCode(const char& code) {
     this->code = code;
 }
 void Person::setLastName(const string& lastName) {
@@ -46,6 +46,6 @@ void Person::setSocialNumber(const string& socialNumber) {
 }
 
 void Person::printPatient() {
-    cout<<this->getCode()<<" "<<this->getFullName()<<": "<<this->getSocialNumber()<<endl;
+    cout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode()<<endl;
 }
 

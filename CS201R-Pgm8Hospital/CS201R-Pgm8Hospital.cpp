@@ -2,12 +2,14 @@
 //
 
 #include <iostream>
+#include <fstream>
 
-
+using namespace std;
 //TODO: Create clinic class --> Clinic class will have two linked lists (Crit Pat and Reg Pat)
 //TODO: Create menu options and read csv file. --> Load lists
 int main()
 {
-    std::cout << "Tim is Sadly, there is no starter code for this assignment\n";
+    ifstream inputFile;
+    inputFile.open("patient");
 }
  

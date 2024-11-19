@@ -9,19 +9,19 @@ using namespace std;
 
 // Standard creation for Person class
 class Person {
-    string code;
+    char code;
     string lastName;
     string firstName;
     string socialNumber;
     public:
     Person();
-    Person(const string& code, const string& lastName, const string& firstName, const string& socialNumber);
-    string getCode();
+    Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber);
+    char getCode();
     string getLastName();
     string getFirstName();
     string getSocialNumber();
     string getFullName();
-    void setCode(const string& code);
+    void setCode(const char& code);
     void setLastName(const string& lastName);
     void setFirstName(const string& firstName);
     void setSocialNumber(const string& socialNumber);
