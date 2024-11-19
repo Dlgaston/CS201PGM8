@@ -14,9 +14,10 @@ LinkedList::~LinkedList() {
         delete current;
         current = next;
     }
+    size =0;
 }
-//Adds person to back of list in O1 time.
-void LinkedList::add(const Person &data) {
+//Adds person to back of list in O1 time. Increments size by 1.
+void LinkedList::addToBack(const Person &data) {
     Node* newNode = new Node();
     newNode->data = data;
     newNode->next = nullptr;
@@ -35,6 +36,23 @@ void LinkedList::add(const Person &data) {
         tail->next = newNode;
         tail = tail->next;
     }
+    size++;
+}
+//Removes header element and assigns new header to next node. Decrements size by 1.
+void LinkedList::removeFromFront() {
+    if(head == nullptr) {
+        cout<<"List is empty"<<endl;
+    }
+    else {
+        Node* temp = head->next;
+        delete head;
+        head = temp;
+        size--;
+    }
+
+}
+int LinkedList::getSize() {
+    return size;
 }
 
 void LinkedList::display() {

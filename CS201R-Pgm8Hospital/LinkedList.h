@@ -16,11 +16,15 @@ struct Node {
 class LinkedList {
     Node *head=nullptr;
     Node *tail=nullptr;
+    int size=0;
 
     public:
+
     LinkedList();
     ~LinkedList();
-    void add(const Person &data);
+    void addToBack(const Person &data);
+    void removeFromFront();
+    int getSize();
     void display();
 };
 
