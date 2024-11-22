@@ -58,7 +58,9 @@ int LinkedList::getSize() {
 void LinkedList::display() {
     Node* current = this->head;
     while(current) {
-        head->data.printPatient()<<endl;
+        current->data.printPatient();
+        cout<<endl;
+        current = current->next;
     }
 }
 

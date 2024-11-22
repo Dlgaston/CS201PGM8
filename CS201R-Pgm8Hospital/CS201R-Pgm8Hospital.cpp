@@ -4,12 +4,60 @@
 #include <iostream>
 #include <fstream>
 
+#include "Functions.h"
+#include "Clinic.h"
+
 using namespace std;
 //TODO: Create clinic class --> Clinic class will have two linked lists (Crit Pat and Reg Pat)
 //TODO: Create menu options and read csv file. --> Load lists
 int main()
 {
     ifstream inputFile;
-    inputFile.open("patient");
+    inputFile.open("patient.csv");
+
+    if(!inputFile.is_open()) {
+        cerr << "Error opening file" << endl;
+    }
+
+    Clinic heartClinic, pulmoClinic, plasticClinic;
+
+    loadClinicData(inputFile,heartClinic,pulmoClinic,plasticClinic);
+
+    int mainChoice, clinicChoice;
+
+    do {
+        // Main menu
+        mainChoice = mainMenu();
+
+        switch (mainChoice) {
+        case 1: // Heart Clinic
+            do {
+                clinicChoice = clinicMenu("Heart Clinic");
+                runClinicChoice(clinicChoice, heartClinic,"Heart Clinic");
+            } while (clinicChoice != 6);
+            break;
+
+        case 2: // Pulmonary Clinic
+            do {
+                clinicChoice = clinicMenu("Pulmonary Clinic");
+                runClinicChoice(clinicChoice, pulmoClinic,"Pulmonary Clinic");
+            } while (clinicChoice != 6);
+            break;
+
+        case 3: // Plastic Surgery Clinic
+            do {
+                clinicChoice = clinicMenu("Plastic Surgery Clinic");
+                runClinicChoice(clinicChoice, plasticClinic,"Plastic Surgery Clinic");
+            } while (clinicChoice != 6);
+            break;
+
+        case 4: // Quit
+            cout << "Exiting the program. Goodbye!" << endl;
+            break;
+        }
+    } while (mainChoice != 4);
+
+    return 0;
 }
+
  

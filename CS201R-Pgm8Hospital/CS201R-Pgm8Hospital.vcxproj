@@ -127,10 +127,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Clinic.cpp" />
     <ClCompile Include="CS201R-Pgm8Hospital.cpp" />
+    <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
+    <ClCompile Include="Person.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="patient.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Clinic.h" />
+    <ClInclude Include="Functions.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="Person.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

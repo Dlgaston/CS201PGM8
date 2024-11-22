@@ -11,7 +11,11 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <stdexcept>
 
-void loadClinicData(const ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic);
+void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic);
+int mainMenu();
+int clinicMenu(const string& clinicName);
+void runClinicChoice(const int& choice, Clinic &clinic, const string& clinicName);
 
 #endif //FUNCTIONS_H
