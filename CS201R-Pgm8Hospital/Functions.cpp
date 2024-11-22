@@ -7,7 +7,7 @@ bool isDigits(string s) {
 
 
 //TODO: Finish loading clinic data
-void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic) {
+void loadClinicData( ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic) {
     string line,token;
     while(getline(input,line)) {
         istringstream ssline(line);
@@ -23,9 +23,8 @@ void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plast
             string social = tokens[3];
             if(isDigits(social)) {
                 Person p = Person(code,fName,lName,social);
-
+                heart.addToReg(p);
             }
-
 
         }
         if(clinic == "PC") {
@@ -34,6 +33,32 @@ void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plast
         }
     }
 }
+void runClinicChoice(const int& choice, Clinic &clinic, const string& clinicName) {
+    switch (choice) {
+        case 1:
+            cout << "Adding a patient to the "<<clinicName<<"..."<< endl;
+        break;
+        case 2:
+            cout << "Adding a critical patient to the "<<clinicName<<"..." << endl;
+        break;
+        case 3:
+            cout << "Taking out a patient for operation in the "<<clinicName<<"..." << endl;
+        break;
+        case 4:
+            cout << "Canceling a patient from the "<<clinicName<<"..." << endl;
+        break;
+        case 5:
+            cout << "Listing patients in the "<<clinicName<<" queue..." << endl;
+            clinic.display();
+        break;
+        case 6:
+            cout << "Changing department or exiting..." << endl;
+        break;
+        default:
+            cout << "Invalid choice!" << endl;
+    }
+}
+
 int mainMenu() {
     int choice;
     bool validInput = false;

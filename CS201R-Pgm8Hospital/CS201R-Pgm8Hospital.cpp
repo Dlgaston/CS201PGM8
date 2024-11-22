@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include "Functions.h"
+#include "Clinic.h"
 
 using namespace std;
 //TODO: Create clinic class --> Clinic class will have two linked lists (Crit Pat and Reg Pat)
@@ -12,8 +13,15 @@ using namespace std;
 int main()
 {
     ifstream inputFile;
-    inputFile.open("patient");
+    inputFile.open("patient.csv");
 
+    if(!inputFile.is_open()) {
+        cerr << "Error opening file" << endl;
+    }
+
+    Clinic heartClinic, pulmoClinic, plasticClinic;
+
+    loadClinicData(inputFile,heartClinic,pulmoClinic,plasticClinic);
 
     int mainChoice, clinicChoice;
 
@@ -25,78 +33,21 @@ int main()
         case 1: // Heart Clinic
             do {
                 clinicChoice = clinicMenu("Heart Clinic");
-                switch (clinicChoice) {
-                case 1:
-                    cout << "Adding a patient to the Heart Clinic..." << endl;
-                    break;
-                case 2:
-                    cout << "Adding a critical patient to the Heart Clinic..." << endl;
-                    break;
-                case 3:
-                    cout << "Taking out a patient for operation in the Heart Clinic..." << endl;
-                    break;
-                case 4:
-                    cout << "Canceling a patient from the Heart Clinic..." << endl;
-                    break;
-                case 5:
-                    cout << "Listing patients in the Heart Clinic queue..." << endl;
-                    break;
-                case 6:
-                    cout << "Changing department or exiting..." << endl;
-                    break;
-                }
+                runClinicChoice(clinicChoice, heartClinic,"Heart Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 2: // Pulmonary Clinic
             do {
                 clinicChoice = clinicMenu("Pulmonary Clinic");
-                switch (clinicChoice) {
-                case 1:
-                    cout << "Adding a patient to the Pulmonary Clinic..." << endl;
-                    break;
-                case 2:
-                    cout << "Adding a critical patient to the Pulmonary Clinic..." << endl;
-                    break;
-                case 3:
-                    cout << "Taking out a patient for operation in the Pulmonary Clinic..." << endl;
-                    break;
-                case 4:
-                    cout << "Canceling a patient from the Pulmonary Clinic..." << endl;
-                    break;
-                case 5:
-                    cout << "Listing patients in the Pulmonary Clinic queue..." << endl;
-                    break;
-                case 6:
-                    cout << "Changing department or exiting..." << endl;
-                    break;
-                }
+                runClinicChoice(clinicChoice, pulmoClinic,"Pulmonary Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 3: // Plastic Surgery Clinic
             do {
                 clinicChoice = clinicMenu("Plastic Surgery Clinic");
-                switch (clinicChoice) {
-                case 1:
-                    cout << "Adding a patient to the Plastic Surgery Clinic..." << endl;
-                    break;
-                case 2:
-                    cout << "Adding a critical patient to the Plastic Surgery Clinic..." << endl;
-                    break;
-                case 3:
-                    cout << "Taking out a patient for operation in the Plastic Surgery Clinic..." << endl;
-                    break;
-                case 4:
-                    cout << "Canceling a patient from the Plastic Surgery Clinic..." << endl;
-                    break;
-                case 5:
-                    cout << "Listing patients in the Plastic Surgery Clinic queue..." << endl;
-                    break;
-                case 6:
-                    cout << "Changing department or exiting..." << endl;
-                    break;
-                }
+                runClinicChoice(clinicChoice, plasticClinic,"Plastic Surgery Clinic");
             } while (clinicChoice != 6);
             break;
 
