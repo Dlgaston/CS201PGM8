@@ -39,27 +39,57 @@ void LinkedList::addToBack(const Person &data) {
     size++;
 }
 //Removes header element and assigns new header to next node. Decrements size by 1.
-void LinkedList::removeFromFront() {
-    if(head == nullptr) {
-        cout<<"List is empty"<<endl;
-    }
-    else {
-        Node* temp = head->next;
-        delete head;
-        head = temp;
-        size--;
-    }
+Person LinkedList::removeFromFront() {
+    Node* removed;
 
+    // Since validation that linked list occurs before implementation, no need to check if head is null.
+    removed = head;
+    Person p = removed->data;
+    Node *temp = head->next;
+    delete head;
+    head = temp;
+    size--;
+
+    return p;
 }
+Person LinkedList::findAndRemove(const string &s) {
+    // Checks if the header is person being looked for, if so, removes from front.
+    if(head->data.getSocialNumber() == s) {
+        Person p = removeFromFront();
+        return p;
+    }
+    // Since the head is already looked at, the current value will be the next.
+    // Prevous value is then set up so not to break linkage in linked list.
+    Node* current = head->next;
+    Node* previous = head;
+    Person p;
+    while (current) {
+        p = current->data;
+        if(p.getSocialNumber() == s) {
+            Node * deletedNode = current;
+            previous->next = current->next;
+            delete deletedNode;
+            size--;
+            return p;
+        }
+        previous = current;
+        current = current->next;
+    }
+    return p;
+}
+
+
 int LinkedList::getSize() {
     return size;
 }
 
-void LinkedList::display() {
+void LinkedList::display(ofstream& out) {
     Node* current = this->head;
     while(current) {
         current->data.printPatient();
+        current->data.printPatientToFile(out);
         cout<<endl;
+        out<<endl;
         current = current->next;
     }
 }

@@ -19,13 +19,16 @@ class Clinic {
     explicit Clinic(const LinkedList& critical, const LinkedList& regular);
     ~Clinic();
 
+    int queueSize();
     void addToCrit(const Person& person);
-    void removeFromCrit(const string& social);
-    void removeFromCrit();
+    // void removeFromCrit(const string& social);
+    // void removeFromCrit();
     void addToReg(const Person& person);
-    void removeFromReg(const string& social);
-    void removeFromReg();
-    void display();
+    // void removeFromReg(const string& social);
+    // void removeFromReg();
+    Person removeFromQueue();
+    Person removeFromQueue(const string& s);
+    void display(ofstream& out);
 };
 
 

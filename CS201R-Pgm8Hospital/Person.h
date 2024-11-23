@@ -5,6 +5,7 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 // Standard creation for Person class
@@ -26,6 +27,7 @@ class Person {
     void setFirstName(const string& firstName);
     void setSocialNumber(const string& socialNumber);
     void printPatient();
+    void printPatientToFile(ofstream& fout);
 
 };
 

@@ -46,6 +46,11 @@ void Person::setSocialNumber(const string& socialNumber) {
 }
 
 void Person::printPatient() {
-    cout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode()<<endl;
+    cout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode();
 }
+void Person::printPatientToFile(ofstream & fout) {
+    fout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode();
+
+}
+
 

@@ -13,9 +13,11 @@ using namespace std;
 int main()
 {
     ifstream inputFile;
+    ofstream outputFile;
     inputFile.open("patient.csv");
+    outputFile.open("transcript.txt");
 
-    if(!inputFile.is_open()) {
+    if(!inputFile.is_open() || !outputFile.is_open()) {
         cerr << "Error opening file" << endl;
     }
 
@@ -33,21 +35,21 @@ int main()
         case 1: // Heart Clinic
             do {
                 clinicChoice = clinicMenu("Heart Clinic");
-                runClinicChoice(clinicChoice, heartClinic,"Heart Clinic");
+                runClinicChoice(outputFile, clinicChoice, heartClinic,"Heart Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 2: // Pulmonary Clinic
             do {
                 clinicChoice = clinicMenu("Pulmonary Clinic");
-                runClinicChoice(clinicChoice, pulmoClinic,"Pulmonary Clinic");
+                runClinicChoice(outputFile, clinicChoice, pulmoClinic,"Pulmonary Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 3: // Plastic Surgery Clinic
             do {
                 clinicChoice = clinicMenu("Plastic Surgery Clinic");
-                runClinicChoice(clinicChoice, plasticClinic,"Plastic Surgery Clinic");
+                runClinicChoice(outputFile, clinicChoice, plasticClinic,"Plastic Surgery Clinic");
             } while (clinicChoice != 6);
             break;
 
@@ -56,7 +58,8 @@ int main()
             break;
         }
     } while (mainChoice != 4);
-
+    inputFile.close();
+    outputFile.close();
     return 0;
 }
 
