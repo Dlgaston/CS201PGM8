@@ -29,13 +29,12 @@ Person Clinic::removeFromQueue() {
     return removed;
 }
 
+//Searches crit and reg list to find patient. If removed comes back empty from crit -> Searches regList.
 Person Clinic::removeFromQueue(const string &s) {
     Person removed;
-    if(this->criticalList.getSize()==0) {
+    removed = this->criticalList.findAndRemove(s);
+    if(removed.getSocialNumber()!= s) {
         removed = this->regularList.findAndRemove(s);
-    }
-    else {
-        removed = this->criticalList.findAndRemove(s);
     }
     return removed;
 }

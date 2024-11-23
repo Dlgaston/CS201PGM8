@@ -13,10 +13,13 @@ Person newPerson() {
     while (!validSocial) {
         cout << "Enter first name: ";
         cin >> fName;
+        cin.ignore();
         cout << "Enter last name: ";
         cin >> lName;
+        cin.ignore();
         cout << "Enter social: ";
         cin >> social;
+        cin.ignore();
         validSocial = isDigits(social);
         if (!validSocial || social.empty()) {
             validSocial = false;
@@ -30,7 +33,6 @@ Person newPerson() {
 }
 
 
-//TODO: Finish loading clinic data
 void loadClinicData( ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic) {
     string line,token;
     while(getline(input,line)) {
@@ -64,27 +66,38 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const str
     string social;
     switch (choice) {
         case 1:
-            cout << "Adding a patient to the "<<clinicName<<"..."<< endl;
-            out << "Adding a patient to the "<<clinicName<<"..."<< endl;
-            p = newPerson();
-            p.setCode('R');
-            clinic.addToReg(p);
-            p.printPatient();
-            p.printPatientToFile(out);
-            out<< " was added to queue.\n"<<endl;
-            cout<< " was added to queue.\n"<<endl;
+            if(clinic.queueSize() <=10) {
+                cout << "Adding a patient to the "<<clinicName<<"..."<< endl;
+                out << "Adding a patient to the "<<clinicName<<"..."<< endl;
+                p = newPerson();
+                p.setCode('R');
+                clinic.addToReg(p);
+                p.printPatient();
+                p.printPatientToFile(out);
+                out<< " was added to queue.\n"<<endl;
+                cout<< " was added to queue.\n"<<endl;
+                break;
+            }
+
+            cout<<"Too many patients in line.\n"<<endl;
+            out<< "Too many patients in line.\n"<<endl;
         break;
         case 2:
-            cout << "Adding a critical patient to the "<<clinicName<<"..." << endl;
-            out << "Adding a critical patient to the "<<clinicName<<"..." << endl;
-            p = newPerson();
-            p.setCode('C');
-            clinic.addToCrit(p);
-            p.printPatient();
-            p.printPatientToFile(out);
-            out<< " was added to queue.\n"<<endl;
-            cout<< " was added to queue.\n"<<endl;
-        break;
+            if(clinic.queueSize() <=10) {
+                cout << "Adding a critical patient to the "<<clinicName<<"..."<< endl;
+                out << "Adding a critical patient to the "<<clinicName<<"..."<< endl;
+                p = newPerson();
+                p.setCode('R');
+                clinic.addToReg(p);
+                p.printPatient();
+                p.printPatientToFile(out);
+                out<< " was added to queue.\n"<<endl;
+                cout<< " was added to queue.\n"<<endl;
+                break;
+            }
+            cout<<"Too many patients in line.\n"<<endl;
+            out<< "Too many patients in line.\n"<<endl;
+            break;
         case 3:
             cout << "Taking out a patient for operation in the "<<clinicName<<"..." << endl;
             out << "Taking out a patient for operation in the "<<clinicName<<"..." << endl;
@@ -107,6 +120,7 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const str
             cin>>social;
 
             while(!isDigits(social)) {
+                cin.ignore();
                 cout<<"Invalid social, Enter a valid social: "<<endl;
                 cin>>social;
             }
