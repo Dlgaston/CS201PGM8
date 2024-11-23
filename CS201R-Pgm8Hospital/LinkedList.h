@@ -22,9 +22,10 @@ class LinkedList {
     LinkedList();
     ~LinkedList();
     void addToBack(const Person &data);
-    void removeFromFront();
+    Person removeFromFront();
+    Person findAndRemove(const string &s);
     int getSize();
-    void display();
+    void display(ofstream& out);
 };
 
 

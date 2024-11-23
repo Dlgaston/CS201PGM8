@@ -18,25 +18,59 @@ void Clinic::addToCrit(const Person &person) {
 void Clinic::addToReg(const Person &person) {
     this->regularList.addToBack(person);
 }
-//These two methods will remove based on social
-void Clinic::removeFromCrit(const string &social) {
-//TODO: Complete --> Write methods in LinkedList to search based on query
-}
-void Clinic::removeFromReg(const string &social) {
-    //TODO: Complete --> Write methods in LinkedList to search based on query
-}
-
-//These two methods will remove from front of que.
-void Clinic::removeFromCrit() {
-    this->criticalList.removeFromFront();
-}
-void Clinic::removeFromReg() {
-    this->regularList.removeFromFront();
+Person Clinic::removeFromQueue() {
+    Person removed;
+    if(this->criticalList.getSize()==0) {
+        removed = this->regularList.removeFromFront();
+    }
+    else {
+        removed = this->criticalList.removeFromFront();
+    }
+    return removed;
 }
 
-void Clinic::display() {
-    this->criticalList.display();
-    this->regularList.display();
+Person Clinic::removeFromQueue(const string &s) {
+    Person removed;
+    if(this->criticalList.getSize()==0) {
+        removed = this->regularList.findAndRemove(s);
+    }
+    else {
+        removed = this->criticalList.findAndRemove(s);
+    }
+    return removed;
+}
+
+// Returns the size of the hospital queue.
+int Clinic::queueSize() {
+    return this->criticalList.getSize() + this->regularList.getSize();
+}
+
+
+// //These two methods will remove based on social
+// void Clinic::removeFromCrit(const string &social) {
+// //TODO: Complete --> Write methods in LinkedList to search based on query
+// }
+// void Clinic::removeFromReg(const string &social) {
+//     //TODO: Complete --> Write methods in LinkedList to search based on query
+// }
+//
+//
+// //These two methods will remove from front of que.
+// void Clinic::removeFromCrit() {
+//     this->criticalList.removeFromFront();
+// }
+// void Clinic::removeFromReg() {
+//     this->regularList.removeFromFront();
+// }
+
+void Clinic::display(ofstream& out) {
+    if(this->criticalList.getSize() >0 || this->regularList.getSize() >0) {
+        this->criticalList.display(out);
+        this->regularList.display(out);
+    } else {
+        cout << "No patients in queue." << endl;
+        out <<"No patients in queue."<< endl;
+    }
 }
 
 
