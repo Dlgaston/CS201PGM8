@@ -76,6 +76,60 @@ void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plast
     }
 }
 
+//Overloaded function to hand fstream file resheduled_patients
+void loadClinicData(fstream& file, Clinic& heart, Clinic& pulmo, Clinic& plastic) {
+    string line, token;
+    while (getline(file, line)) {
+        istringstream ssline(line);
+        vector<string> tokens;
+
+        // Split line by commas and store tokens
+        while (getline(ssline, token, ',')) {
+            tokens.push_back(token);
+        }
+
+        // Ensure correct token size (5: Clinic, First Name, Last Name, Social Number, Code)
+        if (tokens.size() != 5) {
+            cerr << "Invalid data format: " << line << " (expected 5 tokens)" << endl;
+            continue;
+        }
+
+        // Extract patient details
+        string clinic = tokens[0];
+        string fName = tokens[1];
+        string lName = tokens[2];
+        string social = tokens[3];
+        string code = tokens[4];
+
+        // Validate code
+        if (code != "R" && code != "C") {
+            cerr << "Invalid code in line: " << line << " (expected 'R' or 'C')" << endl;
+            continue;
+        }
+
+        // Remove leading zeros from the social number
+        formatSocial(social);
+
+        // Create Person object
+        Person p(code[0], lName, fName, social);
+
+        // Add the patient to the appropriate clinic's queue
+        if (clinic == "HC") {
+            heart.addToReg(p);
+        }
+        else if (clinic == "PC") {
+            pulmo.addToReg(p);
+        }
+        else if (clinic == "PSC") {
+            plastic.addToReg(p);
+        }
+        else {
+            cerr << "Unknown clinic in line: " << clinic << endl;
+        }
+    }
+}
+
+
 void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const string& clinicName) {
     Person p, removed;
     string social;
@@ -254,7 +308,7 @@ int clinicMenu(const string& clinicName) {
 
     return choice;
 }
-void printToCSV(ofstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic) {
+void printToCSV(fstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic) {
     // Write headers to the CSV file
     rescheduleFile << "Clinic,First Name,Last Name,Social Number,Code\n";
 

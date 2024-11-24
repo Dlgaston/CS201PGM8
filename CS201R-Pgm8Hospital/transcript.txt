@@ -1,15 +1,14 @@
-Adding a critical patient to the Heart Clinic...
-jones, jon                         456       C                         was added to queue.
-
-Listing patients in the Heart Clinic queue...
-jones, jon                         456       C                        
-Bernie, Sanders                    2         R                        
-Sean, Connery                      7         R                        
-Spongebob, Squarepants             8         R                        
-Betty, Boop                        9         R                        
-Pink, Panther                      14        R                        
-Jennifer, Lopez                    17        R                        
-Donald, Duck                       19        R                        
+Listing patients in the Pulmonary Clinic queue...
+Yosemite, Sam                      1         R                        
+Johnny, Depp                       4         R                        
+Lady, Gaga                         5         R                        
+Jackie, Chan                       10        R                        
+Mariah, Carey                      11        R                        
+Brad, Pitt                         12        R                        
+Will, Smith                        13        R                        
+Ariana, Grande                     16        R                        
+Justin, Bieber                     18        R                        
+Scooby, Doo                        111       R                        
 
 
 Changing department or exiting...
