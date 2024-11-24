@@ -75,7 +75,17 @@ void loadClinicData( ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plas
         }
     }
 }
-void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const string& clinicName) {
+void saveRemainingPatientsToFile(ofstream& out, Clinic& clinic, const string& clinicName, ofstream& rescheduleFile) {
+    // Save remaining patients in the clinic to the transaction file
+    out << "Rescheduling remaining patients in " << clinicName << ":\n";
+
+    // Write to the reschedule CSV
+    clinic.display(rescheduleFile);  // This will print out all patients remaining in the queue
+
+    // Also add the rescheduling message to the transaction file
+    out << "These patients have been rescheduled for the next day.\n\n";
+}
+void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const string& clinicName, ofstream& rescheduleFile) {
     Person p,removed;
     string social;
     switch (choice) {
@@ -168,6 +178,8 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const str
         break;
         case 6:
             cout << "Changing department or exiting..." << endl;
+            out << "Changing department or exiting..." << endl;
+            saveRemainingPatientsToFile(out, clinic, clinicName, rescheduleFile);
         break;
         default:
             cout << "Invalid choice!" << endl;

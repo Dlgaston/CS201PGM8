@@ -29,6 +29,8 @@ class Clinic {
     Person removeFromQueue();
     Person removeFromQueue(const string& s);
     void display(ofstream& out);
+    // New method to export clinic data for rescheduling
+    void exportRemainingPatients(ofstream& rescheduleFile);
 };
 
 

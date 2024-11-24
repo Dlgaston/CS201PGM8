@@ -135,12 +135,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="patient.csv" />
+    <None Include="rescheduled_patients.csv" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clinic.h" />
     <ClInclude Include="Functions.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Person.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="transcript.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

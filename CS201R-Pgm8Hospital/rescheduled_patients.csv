@@ -1,7 +1,3 @@
-Adding a critical patient to the Heart Clinic...
-ross, rick                         89        C was added to queue.
-
-Listing patients in the Heart Clinic queue...
 ross, rick                         89        C
 Bernie, Sanders                    2         R
 Sean, Connery                      7         R
@@ -10,9 +6,3 @@ Betty, Boop                        9         R
 Pink, Panther                      14        R
 Jennifer, Lopez                    17        R
 Donald, Duck                       19        R
-
-
-Changing department or exiting...
-Rescheduling remaining patients in Heart Clinic:
-These patients have been rescheduled for the next day.
-

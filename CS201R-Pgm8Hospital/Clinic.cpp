@@ -71,5 +71,9 @@ void Clinic::display(ofstream& out) {
         out <<"No patients in queue."<< endl;
     }
 }
+void Clinic::exportRemainingPatients(ofstream& rescheduleFile) {
+    this->criticalList.display(rescheduleFile);
+    this->regularList.display(rescheduleFile);
+}
 
 
