@@ -22,7 +22,7 @@ private:
 
 public:
     Person();
-    Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital = "");
+    Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital="");
 
     // Accessors and Mutators
     char getCode() const;

@@ -5,6 +5,12 @@
 #include "Clinic.h"
 
 using namespace std;
+
+bool checkIfFileEmpty(fstream& file) {
+    file.seekg(0, ios::end);
+    return file.tellg() == 0;
+}
+
 int main() {
     ifstream inputFile;
     ofstream outputFile;
@@ -12,28 +18,20 @@ int main() {
 
     inputFile.open("patient.csv");
     outputFile.open("transcript.txt");
-    rescheduleFile.open("rescheduled_patients.csv", ios::in | ios::out | ios::app);
+    rescheduleFile.open("rescheduled_patients.csv", ios::in | ios::out);
 
-    if (rescheduleFile.tellp() == 0) { // File is empty
-        rescheduleFile << "Clinic,First Name,Last Name,Social Number,Code\n";
-    }
 
-    if (!inputFile.is_open() || !outputFile.is_open()) {
+
+    if (!inputFile.is_open() || !outputFile.is_open()|| !rescheduleFile.is_open()) {
         cerr << "Error opening file" << endl;
     }
 
     Clinic heartClinic, pulmoClinic, plasticClinic;
 
-    // Check if rescheduled_patients.csv is not empty
-    if (rescheduleFile.peek() != fstream::traits_type::eof()) { 
-        cout << "Loading rescheduled patients from previous session..." << endl;
-        loadClinicData(rescheduleFile, heartClinic, pulmoClinic, plasticClinic); 
-        rescheduleFile.clear(); 
-        rescheduleFile.seekg(0, ios::end); 
+    if (!checkIfFileEmpty(rescheduleFile)) {
+        loadClinicData(rescheduleFile,heartClinic,pulmoClinic,plasticClinic);
     }
-
-    loadClinicData(inputFile, heartClinic, pulmoClinic, plasticClinic);
-
+    else{loadClinicData(inputFile, heartClinic, pulmoClinic, plasticClinic);}
     int mainChoice, clinicChoice;
 
     do {

@@ -59,25 +59,38 @@ void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plast
         Person p = Person(code, fName, lName, social);
         if (clinic == "HC") {
             if (isDigits(social) && heart.queueSize() < 10) {
+                p.setHospital("HC");
                 heart.addToReg(p);
             }
 
         }
         if (clinic == "PC") {
             if (isDigits(social) && pulmo.queueSize() < 10) {
+                p.setHospital("PC");
                 pulmo.addToReg(p);
             }
         }
         if (clinic == "PSC") {
             if (isDigits(social) && plastic.queueSize() < 10) {
+                p.setHospital("PSC");
                 plastic.addToReg(p);
             }
         }
     }
 }
 
+void addToCritOrReg(Clinic& clinic,Person& p) {
+    if (p.getCode()=='R') {
+        clinic.addToReg(p);
+    }
+    else if (p.getCode()=='C') {
+        clinic.addToCrit(p);
+    }
+}
+
 //Overloaded function to hand fstream file resheduled_patients
 void loadClinicData(fstream& file, Clinic& heart, Clinic& pulmo, Clinic& plastic) {
+    file.seekg(0, ios::beg);
     string line, token;
     while (getline(file, line)) {
         istringstream ssline(line);
@@ -111,17 +124,17 @@ void loadClinicData(fstream& file, Clinic& heart, Clinic& pulmo, Clinic& plastic
         formatSocial(social);
 
         // Create Person object
-        Person p(code[0], lName, fName, social);
+        Person p(code[0], lName, fName, social,clinic);
 
         // Add the patient to the appropriate clinic's queue
         if (clinic == "HC") {
-            heart.addToReg(p);
+            addToCritOrReg(heart, p);
         }
         else if (clinic == "PC") {
-            pulmo.addToReg(p);
+            addToCritOrReg(pulmo, p);
         }
         else if (clinic == "PSC") {
-            plastic.addToReg(p);
+            addToCritOrReg(plastic, p);
         }
         else {
             cerr << "Unknown clinic in line: " << clinic << endl;
@@ -309,9 +322,17 @@ int clinicMenu(const string& clinicName) {
     return choice;
 }
 void printToCSV(fstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic) {
-    // Write headers to the CSV file
-    rescheduleFile << "Clinic,First Name,Last Name,Social Number,Code\n";
+    // Close the file if it's already open
+    if (rescheduleFile.is_open()) {
+        rescheduleFile.close();
+    }
 
+    // Reopen the file in truncation mode to clear its contents
+    rescheduleFile.open("rescheduled_patients.csv", ios::out | ios::trunc);
+    if (!rescheduleFile) {
+        cerr << "Error: Could not open file." << endl;
+        return;
+    }
     // Helper lambda function to print patients from each clinic
     auto printClinicPatients = [&](LinkedList& list, const string& clinicAbbreviation) {
         Node* current = list.head;  // Access the head of the LinkedList

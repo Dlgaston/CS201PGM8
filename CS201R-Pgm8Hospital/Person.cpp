@@ -5,11 +5,15 @@
 #include "Person.h"
 
 // Default constructor
-Person::Person() : code('R'), firstName(""), lastName(""), socialNumber(""), hospital("") {}
+Person::Person() = default;
 
-// Parameterized constructor with hospital defaulting to an empty string
-Person::Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital)
-    : code(code), lastName(lastName), firstName(firstName), socialNumber(socialNumber), hospital(hospital) {}
+Person::Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital) {
+    this->code = code;
+    this->lastName = lastName;
+    this->firstName = firstName;
+    this->socialNumber = socialNumber;
+    this->hospital = hospital;
+}
 
 // Accessor methods
 char Person::getCode() const {
