@@ -4,23 +4,32 @@
 bool isDigits(string s) {
     return s.find_first_not_of("0123456789") == string::npos;
 }
+// Recursive function to get rid of leading 0's in social.
+void formatSocial(string& s) {
+    while(!s.empty() && s.at(0)=='0') {
+        s = s.substr(1, s.length()-1);
+        formatSocial(s);
+    }
+}
 
 //Method to create new person and validate social.
 Person newPerson() {
     Person person;
     string fName,lName,social;
     bool validSocial = false;
+
+    cout << "Enter first name: ";
+    cin >> fName;
+    cin.ignore();
+    cout << "Enter last name: ";
+    cin >> lName;
+    cin.ignore();
     while (!validSocial) {
-        cout << "Enter first name: ";
-        cin >> fName;
-        cin.ignore();
-        cout << "Enter last name: ";
-        cin >> lName;
-        cin.ignore();
         cout << "Enter social: ";
         cin >> social;
         cin.ignore();
         validSocial = isDigits(social);
+        formatSocial(social);
         if (!validSocial || social.empty()) {
             validSocial = false;
             cout << "Invalid Social. Please try again." << endl;
@@ -45,19 +54,24 @@ void loadClinicData( ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plas
         string fName = tokens[1];
         string lName = tokens[2];
         string social = tokens[3];
+        formatSocial(social);
         char code = 'R';
         Person p = Person(code,fName,lName,social);
         if(clinic == "HC") {
-            if(isDigits(social)) {
+            if(isDigits(social) && heart.queueSize()<10) {
                 heart.addToReg(p);
             }
 
         }
         if(clinic == "PC") {
-            pulmo.addToReg(p);
+            if(isDigits(social) && pulmo.queueSize()<10) {
+                pulmo.addToReg(p);
+            }
         }
         if(clinic == "PSC") {
-            plastic.addToReg(p);
+            if(isDigits(social) && plastic.queueSize()<10) {
+                plastic.addToReg(p);
+            }
         }
     }
 }
@@ -87,8 +101,8 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const str
                 cout << "Adding a critical patient to the "<<clinicName<<"..."<< endl;
                 out << "Adding a critical patient to the "<<clinicName<<"..."<< endl;
                 p = newPerson();
-                p.setCode('R');
-                clinic.addToReg(p);
+                p.setCode('C');
+                clinic.addToCrit(p);
                 p.printPatient();
                 p.printPatientToFile(out);
                 out<< " was added to queue.\n"<<endl;
