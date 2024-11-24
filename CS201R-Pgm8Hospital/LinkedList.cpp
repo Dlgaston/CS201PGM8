@@ -53,16 +53,19 @@ Person LinkedList::removeFromFront() {
     return p;
 }
 Person LinkedList::findAndRemove(const string &s) {
+    Person p;
+    if(head == nullptr) {
+        return p;
+    }
     // Checks if the header is person being looked for, if so, removes from front.
     if(head->data.getSocialNumber() == s) {
-        Person p = removeFromFront();
+        p = removeFromFront();
         return p;
     }
     // Since the head is already looked at, the current value will be the next.
     // Prevous value is then set up so not to break linkage in linked list.
     Node* current = head->next;
     Node* previous = head;
-    Person p;
     while (current) {
         p = current->data;
         if(p.getSocialNumber() == s) {
