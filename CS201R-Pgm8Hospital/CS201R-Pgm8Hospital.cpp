@@ -8,6 +8,7 @@ using namespace std;
 int main() {
     ifstream inputFile;
     ofstream outputFile, rescheduleFile;
+
     inputFile.open("patient.csv");
     outputFile.open("transcript.txt");
     rescheduleFile.open("rescheduled_patients.csv");

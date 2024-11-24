@@ -256,27 +256,27 @@ int clinicMenu(const string& clinicName) {
 }
 void printToCSV(ofstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic) {
     // Write headers to the CSV file
-    rescheduleFile << "First Name,Last Name,Social Number,Code,Hospital\n";
+    rescheduleFile << "Clinic,First Name,Last Name,Social Number,Code\n";
 
     // Helper lambda function to print patients from each clinic
-    auto printClinicPatients = [&](LinkedList& list, const string& clinicName) {
+    auto printClinicPatients = [&](LinkedList& list, const string& clinicAbbreviation) {
         Node* current = list.head;  // Access the head of the LinkedList
         while (current != nullptr) {
             Person& p = current->data;
-            rescheduleFile << p.getFirstName() << ","
+            rescheduleFile << clinicAbbreviation << ","  // Clinic abbreviation at the front
+                << p.getFirstName() << ","
                 << p.getLastName() << ","
                 << p.getSocialNumber() << ","
-                << p.getCode() << ","
-                << clinicName << "\n";  // Add the hospital/clinic name
+                << p.getCode() << "\n";  // Print patient details
             current = current->next;
         }
         };
 
-    // Print patients for each clinic
-    printClinicPatients(heartClinic.criticalList, "Heart Clinic");
-    printClinicPatients(heartClinic.regularList, "Heart Clinic");
-    printClinicPatients(pulmoClinic.criticalList, "Pulmonary Clinic");
-    printClinicPatients(pulmoClinic.regularList, "Pulmonary Clinic");
-    printClinicPatients(plasticClinic.criticalList, "Plastic Surgery Clinic");
-    printClinicPatients(plasticClinic.regularList, "Plastic Surgery Clinic");
+    // Print patients for each clinic (Heart, Pulmonary, and Plastic Surgery Clinics)
+    printClinicPatients(heartClinic.criticalList, "HC");  // Heart Clinic abbreviation
+    printClinicPatients(heartClinic.regularList, "HC");
+    printClinicPatients(pulmoClinic.criticalList, "PC");  // Pulmonary Clinic abbreviation
+    printClinicPatients(pulmoClinic.regularList, "PC");
+    printClinicPatients(plasticClinic.criticalList, "PSC");  // Plastic Surgery Clinic abbreviation
+    printClinicPatients(plasticClinic.regularList, "PSC");
 }

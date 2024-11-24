@@ -1,4 +1,8 @@
+Adding a critical patient to the Heart Clinic...
+jones, jon                         456       C                         was added to queue.
+
 Listing patients in the Heart Clinic queue...
+jones, jon                         456       C                        
 Bernie, Sanders                    2         R                        
 Sean, Connery                      7         R                        
 Spongebob, Squarepants             8         R                        
