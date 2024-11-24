@@ -1,28 +1,24 @@
 // CS201R-Pgm8Hospital.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
-#include <fstream>
-
 #include "Functions.h"
 #include "Clinic.h"
 
 using namespace std;
-int main()
-{
+int main() {
     ifstream inputFile;
     ofstream outputFile, rescheduleFile;
     inputFile.open("patient.csv");
     outputFile.open("transcript.txt");
     rescheduleFile.open("rescheduled_patients.csv");
 
-    if(!inputFile.is_open() || !outputFile.is_open()) {
+    if (!inputFile.is_open() || !outputFile.is_open()) {
         cerr << "Error opening file" << endl;
     }
 
     Clinic heartClinic, pulmoClinic, plasticClinic;
 
-    loadClinicData(inputFile,heartClinic,pulmoClinic,plasticClinic);
+    loadClinicData(inputFile, heartClinic, pulmoClinic, plasticClinic);
 
     int mainChoice, clinicChoice;
 
@@ -34,21 +30,21 @@ int main()
         case 1: // Heart Clinic
             do {
                 clinicChoice = clinicMenu("Heart Clinic");
-                runClinicChoice(outputFile, clinicChoice, heartClinic,"Heart Clinic", rescheduleFile);
+                runClinicChoice(outputFile, clinicChoice, heartClinic, "Heart Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 2: // Pulmonary Clinic
             do {
                 clinicChoice = clinicMenu("Pulmonary Clinic");
-                runClinicChoice(outputFile, clinicChoice, pulmoClinic,"Pulmonary Clinic", rescheduleFile);
+                runClinicChoice(outputFile, clinicChoice, pulmoClinic, "Pulmonary Clinic");
             } while (clinicChoice != 6);
             break;
 
         case 3: // Plastic Surgery Clinic
             do {
                 clinicChoice = clinicMenu("Plastic Surgery Clinic");
-                runClinicChoice(outputFile, clinicChoice, plasticClinic,"Plastic Surgery Clinic", rescheduleFile);
+                runClinicChoice(outputFile, clinicChoice, plasticClinic, "Plastic Surgery Clinic");
             } while (clinicChoice != 6);
             break;
 
@@ -57,10 +53,12 @@ int main()
             break;
         }
     } while (mainChoice != 4);
+
+    // Save remaining patients to rescheduled_patients.csv after the program ends
+    printToCSV(rescheduleFile, heartClinic, pulmoClinic, plasticClinic);
+
     inputFile.close();
     outputFile.close();
     rescheduleFile.close();
     return 0;
 }
-
- 

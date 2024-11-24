@@ -9,11 +9,10 @@
 
 
 class Clinic {
-    LinkedList criticalList;
-    LinkedList regularList;
+public:
+    LinkedList criticalList;  // List for critical patients
+    LinkedList regularList;   // List for regular patients
 
-
-    public:
     static const int CLINICMAXQEUESIZE = 10;
     Clinic();
     explicit Clinic(const LinkedList& critical, const LinkedList& regular);
@@ -37,3 +36,4 @@ class Clinic {
 
 
 #endif //CLINIC_H
+

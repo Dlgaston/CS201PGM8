@@ -1,8 +1,24 @@
-ross, rick                         89        C
-Bernie, Sanders                    2         R
-Sean, Connery                      7         R
-Spongebob, Squarepants             8         R
-Betty, Boop                        9         R
-Pink, Panther                      14        R
-Jennifer, Lopez                    17        R
-Donald, Duck                       19        R
+First Name,Last Name,Social Number,Code,Hospital
+Sanders,Bernie,2,R,Heart Clinic
+Connery,Sean,7,R,Heart Clinic
+Squarepants,Spongebob,8,R,Heart Clinic
+Boop,Betty,9,R,Heart Clinic
+Panther,Pink,14,R,Heart Clinic
+Lopez,Jennifer,17,R,Heart Clinic
+Duck,Donald,19,R,Heart Clinic
+Sam,Yosemite,1,R,Pulmonary Clinic
+Depp,Johnny,4,R,Pulmonary Clinic
+Gaga,Lady,5,R,Pulmonary Clinic
+Chan,Jackie,10,R,Pulmonary Clinic
+Carey,Mariah,11,R,Pulmonary Clinic
+Pitt,Brad,12,R,Pulmonary Clinic
+Smith,Will,13,R,Pulmonary Clinic
+Grande,Ariana,16,R,Pulmonary Clinic
+Bieber,Justin,18,R,Pulmonary Clinic
+Doo,Scooby,111,R,Pulmonary Clinic
+Bunny,Bugs,3,R,Plastic Surgery Clinic
+Knowles,Beyonce,6,R,Plastic Surgery Clinic
+Spears,Britney,21,R,Plastic Surgery Clinic
+Brown,Charlie,15,R,Plastic Surgery Clinic
+,Drake,16,R,Plastic Surgery Clinic
+,Rihanna,20,R,Plastic Surgery Clinic

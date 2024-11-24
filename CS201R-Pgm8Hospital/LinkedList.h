@@ -10,20 +10,20 @@
 // Node struct to contain person data and pointer to next node location of data.
 struct Node {
     Person data;
-    Node *next=nullptr;
+    Node* next = nullptr;
 };
 
 class LinkedList {
-    Node *head=nullptr;
-    Node *tail=nullptr;
-    int size=0;
+public:
+    Node* head = nullptr;
+    Node* tail = nullptr;
+    int size = 0;
 
-    public:
     LinkedList();
     ~LinkedList();
-    void addToBack(const Person &data);
+    void addToBack(const Person& data);
     Person removeFromFront();
-    Person findAndRemove(const string &s);
+    Person findAndRemove(const string& s);
     int getSize();
     void display(ofstream& out);
 };
