@@ -6,11 +6,6 @@
 
 using namespace std;
 
-bool checkIfFileEmpty(fstream& file) {
-    file.seekg(0, ios::end);
-    return file.tellg() == 0;
-}
-
 int main() {
     ifstream inputFile;
     ofstream outputFile;
@@ -28,8 +23,25 @@ int main() {
 
     Clinic heartClinic, pulmoClinic, plasticClinic;
 
+    // Checks if the file is empty and if they want the queue line to be cleared for all clinics.
     if (!checkIfFileEmpty(rescheduleFile)) {
-        loadClinicData(rescheduleFile,heartClinic,pulmoClinic,plasticClinic);
+        char input;
+        cout<< "There are is a queue in the reservation file, clear out? Y or N"<<endl;
+        cin>>input;
+        tolower(input);
+        while (input != 'y' && input != 'n') {
+            cout<<"Please enter a valid input"<<endl;
+            cin>>input;
+            tolower(input);
+        }
+
+        if(input=='y') {
+            clearFile(rescheduleFile);
+            loadClinicData(inputFile, heartClinic, pulmoClinic, plasticClinic);
+        }
+        else{
+            loadClinicData(rescheduleFile,heartClinic,pulmoClinic,plasticClinic);
+        }
     }
     else{loadClinicData(inputFile, heartClinic, pulmoClinic, plasticClinic);}
     int mainChoice, clinicChoice;

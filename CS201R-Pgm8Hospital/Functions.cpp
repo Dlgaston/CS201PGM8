@@ -4,6 +4,24 @@
 bool isDigits(string s) {
     return s.find_first_not_of("0123456789") == string::npos;
 }
+bool checkIfFileEmpty(fstream& file) {
+    file.seekg(0, ios::end);
+    cout<<file.tellg()<<endl;
+    return file.tellg() == 0;
+}
+//Clears out file to empty
+void clearFile(fstream &file) {
+    if (file.is_open()) {
+        file.close();
+    }
+
+    // Reopen the file in truncation mode to clear its contents
+    file.open("rescheduled_patients.csv", ios::out | ios::trunc);
+    if (!file) {
+        cerr << "Error: Could not open file." << endl;
+    }
+}
+
 // Recursive function to get rid of leading 0's in social.
 void formatSocial(string& s) {
     while (!s.empty() && s.at(0) == '0') {
@@ -322,17 +340,7 @@ int clinicMenu(const string& clinicName) {
     return choice;
 }
 void printToCSV(fstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic) {
-    // Close the file if it's already open
-    if (rescheduleFile.is_open()) {
-        rescheduleFile.close();
-    }
-
-    // Reopen the file in truncation mode to clear its contents
-    rescheduleFile.open("rescheduled_patients.csv", ios::out | ios::trunc);
-    if (!rescheduleFile) {
-        cerr << "Error: Could not open file." << endl;
-        return;
-    }
+    clearFile(rescheduleFile);
     // Helper lambda function to print patients from each clinic
     auto printClinicPatients = [&](LinkedList& list, const string& clinicAbbreviation) {
         Node* current = list.head;  // Access the head of the LinkedList
