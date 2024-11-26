@@ -166,7 +166,7 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const str
     string social;
     switch (choice) {
     case 1:
-        if (clinic.queueSize() <= 10) {
+        if (clinic.queueSize() < 10) {
             cout << "Adding a patient to the " << clinicName << "..." << endl;
             out << "Adding a patient to the " << clinicName << "..." << endl;
             p = newPerson();
@@ -183,7 +183,7 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const str
         out << "Too many patients in line.\n" << endl;
         break;
     case 2:
-        if (clinic.queueSize() <= 10) {
+        if (clinic.queueSize() < 10) {
             cout << "Adding a critical patient to the " << clinicName << "..." << endl;
             out << "Adding a critical patient to the " << clinicName << "..." << endl;
             p = newPerson();

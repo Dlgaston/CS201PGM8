@@ -1,14 +1,145 @@
+Adding a patient to the Heart Clinic...
+        Wubba, Bubba                       1234      R     was added to queue.
+
+Listing patients in the Heart Clinic queue...
+HC      Bernie, Sanders                    2         R    
+HC      Sean, Connery                      7         R    
+HC      Spongebob, Squarepants             8         R    
+HC      Betty, Boop                        9         R    
+HC      Pink, Panther                      14        R    
+HC      Jennifer, Lopez                    17        R    
+HC      Donald, Duck                       19        R    
+        Wubba, Bubba                       1234      R    
+
+
+Adding a critical patient to the Heart Clinic...
+        Swift, Taylor                      987       C     was added to queue.
+
+Adding a critical patient to the Heart Clinic...
+        Mahommes, Patrick                  2345      C     was added to queue.
+
+Listing patients in the Heart Clinic queue...
+        Swift, Taylor                      987       C    
+        Mahommes, Patrick                  2345      C    
+HC      Bernie, Sanders                    2         R    
+HC      Sean, Connery                      7         R    
+HC      Spongebob, Squarepants             8         R    
+HC      Betty, Boop                        9         R    
+HC      Pink, Panther                      14        R    
+HC      Jennifer, Lopez                    17        R    
+HC      Donald, Duck                       19        R    
+        Wubba, Bubba                       1234      R    
+
+
+Taking out a patient for operation in the Heart Clinic...
+        Swift, Taylor                      987       C     was removed to queue.
+
+Canceling a patient from the Heart Clinic...
+Patient with social 10 was not found.
+
+Canceling a patient from the Heart Clinic...
+HC      Jennifer, Lopez                    17        R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+        Mahommes, Patrick                  2345      C     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+HC      Bernie, Sanders                    2         R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+HC      Sean, Connery                      7         R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+HC      Spongebob, Squarepants             8         R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+HC      Betty, Boop                        9         R     was removed to queue.
+
+Canceling a patient from the Heart Clinic...
+HC      Pink, Panther                      14        R     was removed to queue.
+
+Listing patients in the Heart Clinic queue...
+HC      Donald, Duck                       19        R    
+        Wubba, Bubba                       1234      R    
+
+
+Changing department or exiting...
+Too many patients in line.
+
+Taking out a patient for operation in the Pulmonary Clinic...
+PC      Yosemite, Sam                      1         R     was removed to queue.
+
+Canceling a patient from the Pulmonary Clinic...
+PC      Scooby, Doo                        111       R     was removed to queue.
+
+Adding a patient to the Pulmonary Clinic...
+        Falon, Jimmy                       6789      R     was added to queue.
+
+Adding a critical patient to the Pulmonary Clinic...
+        Rubble, Betty                      47474     C     was added to queue.
+
+Too many patients in line.
+
+Taking out a patient for operation in the Pulmonary Clinic...
+        Rubble, Betty                      47474     C     was removed to queue.
+
+Taking out a patient for operation in the Pulmonary Clinic...
+PC      Johnny, Depp                       4         R     was removed to queue.
+
+Taking out a patient for operation in the Pulmonary Clinic...
+PC      Lady, Gaga                         5         R     was removed to queue.
+
+Taking out a patient for operation in the Pulmonary Clinic...
+PC      Jackie, Chan                       10        R     was removed to queue.
+
 Listing patients in the Pulmonary Clinic queue...
-Yosemite, Sam                      1         R                        
-Johnny, Depp                       4         R                        
-Lady, Gaga                         5         R                        
-Jackie, Chan                       10        R                        
-Mariah, Carey                      11        R                        
-Brad, Pitt                         12        R                        
-Will, Smith                        13        R                        
-Ariana, Grande                     16        R                        
-Justin, Bieber                     18        R                        
-Scooby, Doo                        111       R                        
+PC      Mariah, Carey                      11        R    
+PC      Brad, Pitt                         12        R    
+PC      Will, Smith                        13        R    
+PC      Ariana, Grande                     16        R    
+PC      Justin, Bieber                     18        R    
+
+
+Changing department or exiting...
+Changing department or exiting...
+Taking out a patient for operation in the Heart Clinic...
+HC      Donald, Duck                       19        R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+        Wubba, Bubba                       1234      R     was removed to queue.
+
+Taking out a patient for operation in the Heart Clinic...
+Queue is empty.
+
+Adding a patient to the Heart Clinic...
+        Flinstone, Fred                    1         R     was added to queue.
+
+Adding a critical patient to the Heart Clinic...
+        Rubble, Barney                     2         C     was added to queue.
+
+Listing patients in the Heart Clinic queue...
+        Rubble, Barney                     2         C    
+        Flinstone, Fred                    1         R    
+
+
+Changing department or exiting...
+Adding a critical patient to the Plastic Surgery Clinic...
+        Coyote, Wiley                      999       C     was added to queue.
+
+Canceling a patient from the Plastic Surgery Clinic...
+        Coyote, Wiley                      999       C     was removed to queue.
+
+Taking out a patient for operation in the Plastic Surgery Clinic...
+PSC     Bugs, Bunny                        3         R     was removed to queue.
+
+Canceling a patient from the Plastic Surgery Clinic...
+PSC     Rihanna,                           20        R     was removed to queue.
+
+Listing patients in the Plastic Surgery Clinic queue...
+PSC     Beyonce, Knowles                   6         R    
+PSC     Britney, Spears                    21        R    
+PSC     Charlie, Brown                     15        R    
+PSC     Drake,                             16        R    
 
 
 Changing department or exiting...
