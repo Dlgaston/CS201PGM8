@@ -4,53 +4,75 @@
 
 #include "Person.h"
 
-#include <iomanip>
-
+// Default constructor
 Person::Person() = default;
 
-Person::Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber) {
+Person::Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital) {
     this->code = code;
     this->lastName = lastName;
     this->firstName = firstName;
     this->socialNumber = socialNumber;
+    this->hospital = hospital;
 }
 
-char Person::getCode() {
+// Accessor methods
+char Person::getCode() const {
     return this->code;
 }
-string Person::getLastName() {
+
+string Person::getLastName() const {
     return this->lastName;
 }
-string Person::getFirstName() {
+
+string Person::getFirstName() const {
     return this->firstName;
 }
-string Person::getSocialNumber() {
+
+string Person::getSocialNumber() const {
     return this->socialNumber;
 }
-string Person::getFullName() {
 
-    return this->getLastName()+", "+this->getFirstName();
+string Person::getFullName() const {
+    return this->getLastName() + ", " + this->getFirstName();
 }
 
+string Person::getHospital() const {
+    return this->hospital;
+}
+
+// Mutator methods
 void Person::setCode(const char& code) {
     this->code = code;
 }
+
 void Person::setLastName(const string& lastName) {
     this->lastName = lastName;
 }
+
 void Person::setFirstName(const string& firstName) {
     this->firstName = firstName;
 }
+
 void Person::setSocialNumber(const string& socialNumber) {
     this->socialNumber = socialNumber;
 }
 
-void Person::printPatient() {
-    cout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode();
-}
-void Person::printPatientToFile(ofstream & fout) {
-    fout<<setw(35)<<left<<this->getFullName()<<setw(10)<<left<<this->getSocialNumber()<<this->getCode();
-
+void Person::setHospital(const string& hospital) {
+    this->hospital = hospital;
 }
 
+// Print patient info to the console
+void Person::printPatient() const {
+    cout << setw(8) << left << this->getHospital()
+        << setw(35) << left << this->getFullName()
+        << setw(10) << left << this->getSocialNumber()
+        << setw(5) << left << this->getCode();
+}
 
+// Print patient info to the file
+void Person::printPatientToFile(ofstream& fout) const {
+    fout<< setw(8) << left << this->getHospital()
+        << setw(35) << left << this->getFullName()
+        << setw(10) << left << this->getSocialNumber()
+        << setw(5) << left << this->getCode();
+}

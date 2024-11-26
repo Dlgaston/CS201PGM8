@@ -35,6 +35,9 @@
     <None Include="patient.csv">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="rescheduled_patients.csv">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Functions.h">
@@ -49,5 +52,10 @@
     <ClInclude Include="Clinic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="transcript.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

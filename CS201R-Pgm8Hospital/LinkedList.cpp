@@ -14,20 +14,20 @@ LinkedList::~LinkedList() {
         delete current;
         current = next;
     }
-    size =0;
+    size = 0;
 }
 //Adds person to back of list in O1 time. Increments size by 1.
-void LinkedList::addToBack(const Person &data) {
+void LinkedList::addToBack(const Person& data) {
     Node* newNode = new Node();
     newNode->data = data;
     newNode->next = nullptr;
 
     //Checks if list is empty, assigns newNode to beginning of list.
-    if(head == nullptr) {
+    if (head == nullptr) {
         head = newNode;
     }
     //If Head is not null, but the next node is, that means the tail is empty. Assigns tail to newNode and then links to head.
-    else if(head->next == nullptr) {
+    else if (head->next == nullptr) {
         tail = newNode;
         head->next = tail;
     }
@@ -45,20 +45,20 @@ Person LinkedList::removeFromFront() {
     // Since validation that linked list occurs before implementation, no need to check if head is null.
     removed = head;
     Person p = removed->data;
-    Node *temp = head->next;
+    Node* temp = head->next;
     delete head;
     head = temp;
     size--;
 
     return p;
 }
-Person LinkedList::findAndRemove(const string &s) {
+Person LinkedList::findAndRemove(const string& s) {
     Person p;
-    if(head == nullptr) {
+    if (head == nullptr) {
         return p;
     }
     // Checks if the header is person being looked for, if so, removes from front.
-    if(head->data.getSocialNumber() == s) {
+    if (head->data.getSocialNumber() == s) {
         p = removeFromFront();
         return p;
     }
@@ -68,8 +68,8 @@ Person LinkedList::findAndRemove(const string &s) {
     Node* previous = head;
     while (current) {
         p = current->data;
-        if(p.getSocialNumber() == s) {
-            Node * deletedNode = current;
+        if (p.getSocialNumber() == s) {
+            Node* deletedNode = current;
             previous->next = current->next;
             delete deletedNode;
             size--;
@@ -88,11 +88,11 @@ int LinkedList::getSize() {
 
 void LinkedList::display(ofstream& out) {
     Node* current = this->head;
-    while(current) {
+    while (current) {
         current->data.printPatient();
         current->data.printPatientToFile(out);
-        cout<<endl;
-        out<<endl;
+        cout << endl;
+        out << endl;
         current = current->next;
     }
 }

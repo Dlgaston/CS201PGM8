@@ -4,33 +4,42 @@
 
 #ifndef PERSON_H
 #define PERSON_H
+
 #include <iostream>
 #include <fstream>
+#include <string>
+#include <iomanip>
+
 using namespace std;
 
-// Standard creation for Person class
 class Person {
-    char code;
-    string lastName;
+private:
+    char code;                // 'R' for regular, 'C' for critical
     string firstName;
+    string lastName;
     string socialNumber;
-    public:
+    string hospital;          // New attribute to store the hospital name
+
+public:
     Person();
-    Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber);
-    char getCode();
-    string getLastName();
-    string getFirstName();
-    string getSocialNumber();
-    string getFullName();
+    Person(const char& code, const string& lastName, const string& firstName, const string& socialNumber, const string& hospital="");
+
+    // Accessors and Mutators
+    char getCode() const;
+    string getLastName() const;
+    string getFirstName() const;
+    string getSocialNumber() const;
+    string getFullName() const;
+    string getHospital() const;
     void setCode(const char& code);
     void setLastName(const string& lastName);
     void setFirstName(const string& firstName);
     void setSocialNumber(const string& socialNumber);
-    void printPatient();
-    void printPatientToFile(ofstream& fout);
+    void setHospital(const string& hospital);  // New setter for the hospital
 
+    // Methods to print patient information
+    void printPatient() const;
+    void printPatientToFile(ofstream& fout) const;
 };
 
-
-
-#endif //PERSON_H
+#endif // PERSON_H

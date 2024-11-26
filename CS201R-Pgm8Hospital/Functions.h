@@ -16,6 +16,11 @@
 void loadClinicData(ifstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic);
 int mainMenu();
 int clinicMenu(const string& clinicName);
-void runClinicChoice(ofstream& out, const int& choice, Clinic &clinic, const string& clinicName);
+void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const string& clinicName);
+void printToCSV(fstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClinic, Clinic& plasticClinic);
+void loadClinicData(fstream& input, Clinic& heart, Clinic& pulmo, Clinic& plastic);
+bool checkIfFileEmpty(fstream& input);
+void clearFile(fstream& input);
 
 #endif //FUNCTIONS_H
+
