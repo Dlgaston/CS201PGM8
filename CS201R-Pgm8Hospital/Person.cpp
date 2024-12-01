@@ -62,17 +62,11 @@ void Person::setHospital(const string& hospital) {
 }
 
 // Print patient info to the console
-void Person::printPatient() const {
-    cout << setw(8) << left << this->getHospital()
+string Person::printPatient() const {
+    ostringstream patient;
+    patient << setw(8) << left << this->getHospital()
         << setw(35) << left << this->getFullName()
         << setw(10) << left << this->getSocialNumber()
         << setw(5) << left << this->getCode();
-}
-
-// Print patient info to the file
-void Person::printPatientToFile(ofstream& fout) const {
-    fout<< setw(8) << left << this->getHospital()
-        << setw(35) << left << this->getFullName()
-        << setw(10) << left << this->getSocialNumber()
-        << setw(5) << left << this->getCode();
+    return patient.str();
 }

@@ -27,9 +27,9 @@ public:
     // void removeFromReg();
     Person removeFromQueue();
     Person removeFromQueue(const string& s);
-    void display(ofstream& out);
+    string display();
     // New method to export clinic data for rescheduling
-    void exportRemainingPatients(ofstream& rescheduleFile);
+    string exportRemainingPatients();
 };
 
 

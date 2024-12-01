@@ -25,7 +25,7 @@ public:
     Person removeFromFront();
     Person findAndRemove(const string& s);
     int getSize();
-    void display(ofstream& out);
+    string display();
 };
 
 

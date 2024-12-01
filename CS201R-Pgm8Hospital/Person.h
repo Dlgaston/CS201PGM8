@@ -9,6 +9,7 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <sstream>
 
 using namespace std;
 
@@ -38,8 +39,7 @@ public:
     void setHospital(const string& hospital);  // New setter for the hospital
 
     // Methods to print patient information
-    void printPatient() const;
-    void printPatientToFile(ofstream& fout) const;
+    string printPatient() const;
 };
 
 #endif // PERSON_H

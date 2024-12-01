@@ -44,37 +44,22 @@ int Clinic::queueSize() {
     return this->criticalList.getSize() + this->regularList.getSize();
 }
 
-
-// //These two methods will remove based on social
-// void Clinic::removeFromCrit(const string &social) {
-// //TODO: Complete --> Write methods in LinkedList to search based on query
-// }
-// void Clinic::removeFromReg(const string &social) {
-//     //TODO: Complete --> Write methods in LinkedList to search based on query
-// }
-//
-//
-// //These two methods will remove from front of que.
-// void Clinic::removeFromCrit() {
-//     this->criticalList.removeFromFront();
-// }
-// void Clinic::removeFromReg() {
-//     this->regularList.removeFromFront();
-// }
-
-void Clinic::display(ofstream& out) {
+string Clinic::display() {
+    string display;
     if (this->criticalList.getSize() > 0 || this->regularList.getSize() > 0) {
-        this->criticalList.display(out);
-        this->regularList.display(out);
+        display += this->criticalList.display();
+        display += this->regularList.display();
     }
     else {
-        cout << "No patients in queue." << endl;
-        out << "No patients in queue." << endl;
+        display += "No patients in queue.\n";
     }
+    return display;
 }
-void Clinic::exportRemainingPatients(ofstream& rescheduleFile) {
-    this->criticalList.display(rescheduleFile);
-    this->regularList.display(rescheduleFile);
+string Clinic::exportRemainingPatients() {
+    string display;
+    display +=this->criticalList.display();
+    display +=this->regularList.display();
+    return display;
 }
 
 

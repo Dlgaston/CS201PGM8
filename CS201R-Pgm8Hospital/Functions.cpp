@@ -159,58 +159,69 @@ void loadClinicData(fstream& file, Clinic& heart, Clinic& pulmo, Clinic& plastic
         }
     }
 }
+// Takes in the current transaction log and then adds that to the total logs for each clinic.
+void addToClinicLog(const string& clinicName, vector<string>& clinicLog, const string& log) {
 
+    if (clinicName == "Heart Clinic") {
+       clinicLog.at(0) += log;
+    }
+    else if (clinicName == "Pulmonary Clinic") {
+        clinicLog.at(1) += log;
+    }
+    else if (clinicName == "Plastic Surgery Clinic") {
+        clinicLog.at(2) += log;
+    }
+}
 
-void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const string& clinicName) {
+void runClinicChoice(const int& choice, Clinic& clinic, const string& clinicName, vector<string>& clinicLogs) {
+
     Person p, removed;
-    string social;
+    string social,log;
     switch (choice) {
     case 1:
         if (clinic.queueSize() < 10) {
+            log += "Adding a patient to the " + clinicName + "...\n";
             cout << "Adding a patient to the " << clinicName << "..." << endl;
-            out << "Adding a patient to the " << clinicName << "..." << endl;
             p = newPerson();
             p.setCode('R');
             clinic.addToReg(p);
-            p.printPatient();
-            p.printPatientToFile(out);
-            out << " was added to queue.\n" << endl;
+            log += p.printPatient();
+            cout << p.printPatient();
             cout << " was added to queue.\n" << endl;
             break;
         }
-
+        log+= "Too many patients in line.\n";
         cout << "Too many patients in line.\n" << endl;
-        out << "Too many patients in line.\n" << endl;
         break;
     case 2:
         if (clinic.queueSize() < 10) {
+            log += "Adding a critical patient to the " + clinicName + "...\n";
             cout << "Adding a critical patient to the " << clinicName << "..." << endl;
-            out << "Adding a critical patient to the " << clinicName << "..." << endl;
             p = newPerson();
             p.setCode('C');
             clinic.addToCrit(p);
-            p.printPatient();
-            p.printPatientToFile(out);
-            out << " was added to queue.\n" << endl;
+            log += p.printPatient();
+            log += " was added to queue.\n";
+            cout << p.printPatient();
             cout << " was added to queue.\n" << endl;
             break;
         }
+        log+= "Too many critical patients in line.\n";
         cout << "Too many patients in line.\n" << endl;
-        out << "Too many patients in line.\n" << endl;
         break;
     case 3:
+        log += "Taking out a patient for operation in the " + clinicName + "...\n";
         cout << "Taking out a patient for operation in the " << clinicName << "..." << endl;
-        out << "Taking out a patient for operation in the " << clinicName << "..." << endl;
         if (clinic.queueSize() > 0) {
             removed = clinic.removeFromQueue();
-            removed.printPatient();
-            removed.printPatientToFile(out);
+            log += removed.printPatient();
+            cout<<removed.printPatient();
 
-            out << " was removed to queue.\n" << endl;
-            cout << " was removed to queue.\n" << endl;
+            log += " was removed from queue.\n";
+            cout << " was removed from queue.\n" << endl;
         }
         else {
-            out << "Queue is empty.\n" << endl;
+            log+= "Queue is empty.\n";
             cout << "Queue is empty.\n" << endl;
         }
         break;
@@ -225,40 +236,42 @@ void runClinicChoice(ofstream& out, const int& choice, Clinic& clinic, const str
             cin >> social;
         }
         if (clinic.queueSize() > 0) {
+            log +="Canceling a patient from the " + clinicName+ "...\n";
             cout << "Canceling a patient from the " << clinicName << "..." << endl;
-            out << "Canceling a patient from the " << clinicName << "..." << endl;
             removed = clinic.removeFromQueue(social);
             if (removed.getSocialNumber() != social) {
+                log +="Patient with social " +social+ " was not found\n";
                 cout << "Patient with social " << social << " was not found.\n" << endl;
-                out << "Patient with social " << social << " was not found.\n" << endl;
+
 
             }
             else {
-                removed.printPatient();
-                removed.printPatientToFile(out);
-                out << " was removed to queue.\n" << endl;
+                log+= removed.printPatient();
+                cout<<removed.printPatient();
+                log+= " was removed from queue.\n";
                 cout << " was removed to queue.\n" << endl;
             }
         }
         else {
+            log+= "Queue is empty.\n";
             cout << "Queue is empty." << endl;
         }
 
         break;
     case 5:
+        log+= "Listing patients in the " + clinicName + " queue...\n";
         cout << "Listing patients in the " << clinicName << " queue..." << endl;
-        out << "Listing patients in the " << clinicName << " queue..." << endl;
-        clinic.display(out);
+        log+= clinic.display()+"\n";
+        cout<<clinic.display();
         cout << "\n" << endl;
-        out << "\n" << endl;
         break;
     case 6:
         cout << "Changing department or exiting..." << endl;
-        out << "Changing department or exiting..." << endl;
         break;
     default:
         cout << "Invalid choice!" << endl;
     }
+    addToClinicLog(clinicName,clinicLogs,log);
 }
 
 int mainMenu() {
@@ -362,4 +375,19 @@ void printToCSV(fstream& rescheduleFile, Clinic& heartClinic, Clinic& pulmoClini
     printClinicPatients(pulmoClinic.regularList, "PC");
     printClinicPatients(plasticClinic.criticalList, "PSC");  // Plastic Surgery Clinic abbreviation
     printClinicPatients(plasticClinic.regularList, "PSC");
+}
+
+void printClinicLogs(ofstream &out, vector<string> &clinicLogs,Clinic& heart, Clinic& pulmo, Clinic& plastic) {
+
+    for (auto& log: clinicLogs) {
+        log+="These patients are rescheduled for tomorrow: \n";
+    }
+    // Adds remaining queue to log.
+    clinicLogs.at(0) += heart.display();
+    clinicLogs.at(1) += pulmo.display();
+    clinicLogs.at(2) += plastic.display();
+
+    for (const auto& log: clinicLogs) {
+        out << log << "\n";
+    }
 }
