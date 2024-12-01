@@ -85,15 +85,13 @@ Person LinkedList::findAndRemove(const string& s) {
 int LinkedList::getSize() {
     return size;
 }
-
-void LinkedList::display(ofstream& out) {
+string LinkedList::display() {
+    string display;
     Node* current = this->head;
     while (current) {
-        current->data.printPatient();
-        current->data.printPatientToFile(out);
-        cout << endl;
-        out << endl;
+        display += current->data.printPatient()+"\n";
         current = current->next;
     }
+    return display;
 }
 

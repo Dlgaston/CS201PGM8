@@ -22,6 +22,10 @@ int main() {
     }
 
     Clinic heartClinic, pulmoClinic, plasticClinic;
+    vector<string> clinicLogs(3);
+    clinicLogs[0] = "HeartClinic Transaction Records: \n==============================================================\n";
+    clinicLogs[1] = "PulmoClinic Transaction Records: \n==============================================================\n";
+    clinicLogs[2] = "PlasticClinic Transaction Records: \n==============================================================\n";
 
     // Checks if the file is empty and if they want the queue line to be cleared for all clinics.
     if (!checkIfFileEmpty(rescheduleFile)) {
@@ -54,33 +58,34 @@ int main() {
         case 1: // Heart Clinic
             do {
                 clinicChoice = clinicMenu("Heart Clinic");
-                runClinicChoice(outputFile, clinicChoice, heartClinic, "Heart Clinic");
+                runClinicChoice(clinicChoice, heartClinic, "Heart Clinic",clinicLogs);
             } while (clinicChoice != 6);
             break;
 
         case 2: // Pulmonary Clinic
             do {
                 clinicChoice = clinicMenu("Pulmonary Clinic");
-                runClinicChoice(outputFile, clinicChoice, pulmoClinic, "Pulmonary Clinic");
+                runClinicChoice(clinicChoice, pulmoClinic, "Pulmonary Clinic",clinicLogs);
             } while (clinicChoice != 6);
             break;
 
         case 3: // Plastic Surgery Clinic
             do {
                 clinicChoice = clinicMenu("Plastic Surgery Clinic");
-                runClinicChoice(outputFile, clinicChoice, plasticClinic, "Plastic Surgery Clinic");
+                runClinicChoice(clinicChoice, plasticClinic, "Plastic Surgery Clinic",clinicLogs);
             } while (clinicChoice != 6);
             break;
 
         case 4: // Quit
             cout << "Exiting the program. Goodbye!" << endl;
+
             break;
         }
     } while (mainChoice != 4);
 
     // Save remaining patients to rescheduled_patients.csv after the program ends
     printToCSV(rescheduleFile, heartClinic, pulmoClinic, plasticClinic);
-
+    printClinicLogs(outputFile, clinicLogs, heartClinic, pulmoClinic, plasticClinic);
     inputFile.close();
     outputFile.close();
     rescheduleFile.close();
